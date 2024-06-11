@@ -1,0 +1,8 @@
+type = module
+name = TinyMCE File Link
+description = TinyMCE plugin to link to previously uploaded files via dialog.
+
+dependencies[] = tinymce
+dependencies[] = file_library
+
+backdrop = 1.x

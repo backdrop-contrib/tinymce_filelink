@@ -1,0 +1,68 @@
+<?php
+/**
+ * @file
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function tinymce_filelink_menu() {
+  $items['editor/dialog/filelink/%filter_format'] = array(
+    'title' => 'Insert file link',
+    'page callback' => '_tinymce_filelink_dialog',
+    'theme callback' => 'ajax_base_page_theme',
+    'page arguments' => array(3),
+    'access callback' => TRUE,/* @todo */
+    'load callback' => 'filter_format_load',
+  );
+  return $items;
+}
+
+/**
+ * Custom page callback to embed a view.
+ */
+function _tinymce_filelink_dialog($format) {
+  if ($format->editor != 'tinymce') {
+    return;
+  }
+  // hm, don't need it here inside the dialog, but actually outside in parent.
+  $profile = $format->editor_settings['tinymce_settings']['profile'];// and so on...
+  //debug($profile);
+  $module_path = backdrop_get_path('module', 'tinymce_filelink');
+  $view = views_embed_view('tinymce_file_browser');
+  $render = array(
+    '#type' => 'markup',
+    '#markup' => !empty($view) ? $view : 'oopsadaisy',//@todo not found or no access... how to differentiate?
+    '#attached' => array(
+      'js' => array($module_path . '/js/tinymce-filelink.js'),
+      'css' => array($module_path . '/css/tinymce-filelink.css'),
+    ),
+  );
+  return $render;
+}
+
+/**
+ * Implements hook_tinymce_external_plugins().
+ */
+function tinymce_filelink_tinymce_external_plugins($format) {
+  $module_url = base_path() . backdrop_get_path('module', 'tinymce_filelink');
+  $plugins = array(
+    'filelink' => array(
+      'plugin_path' => $module_url . '/js/plugins/filelink/plugin.js',
+      'buttons' => array(
+        'filelink' => array(
+          'icon' => 'link-file',
+          'tooltip' => t('Insert file link'),
+        ),
+      ),
+      'icons' => array(
+        'link-file' => 'link-file.svg',
+      ),
+      'variables' => array(
+        'tinymceFilelinkBrowseUrl' => url('editor/dialog/filelink/' . $format->format),
+        'tinymceFilelinkTooltip' => t('Insert file link'),
+      ),
+    ),
+  );
+  return $plugins;
+}

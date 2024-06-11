@@ -1,0 +1,35 @@
+/**
+ * Styles attached to the dialog contents.
+ */
+.tinymce-filelink-dialog {
+  z-index: 1300;/* Above editor toolbar */
+}
+.tinymce-filelink-dialog .view {
+  max-width: 100%;
+  overflow: auto;/* table... tricky */
+}
+.tinymce-filelink-dialog {
+  max-width: 94% !important;
+  max-height: 94% !important;
+}
+.tinymce-filelink-dialog th,
+.tinymce-filelink-dialog td {
+  padding-top: .3em;
+  padding-bottom: .3em;
+  min-width: 6em;
+}
+.tinymce-filelink-dialog th {
+  white-space: nowrap;
+}
+.tinymce-filelink-dialog .button {
+  margin: 0;
+  text-transform: none;
+  white-space: nowrap;
+  display: inline-block;
+}
+.tinymce-filelink-dialog .views-exposed-form {
+  margin: 0 0 1em;
+  padding: 0;
+  border: none;
+  background: inherit;
+}
