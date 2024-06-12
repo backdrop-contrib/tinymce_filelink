@@ -32,7 +32,7 @@
         },
         modal: true,
         autoResize: true
-      }
+      };
       let ajaxOptions = {
         accepts: 'application/vnd.backdrop-dialog',
         url: editor.options.get('tinymceFilelinkBrowseUrl'),
@@ -41,7 +41,7 @@
         progress: {
           type: 'none'/* @todo not sure yet... */
         }
-      }
+      };
       let element = document.querySelector('#' + triggerId);
       new Backdrop.ajax(modalId, element, ajaxOptions);
     });
