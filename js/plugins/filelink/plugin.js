@@ -8,9 +8,9 @@
   tinymce.PluginManager.add('filelink', function (editor, url) {
     const triggerId = editor.id + '-filelink-trigger';
     // Do not reuse existing dialog container, as other dialogs can influence
-    // its dimensions.
-    // The first editor instance on page wins creation.
+    // its dimensions and position.
     const modalId = 'tinymce-filelink-modal';
+    // The first editor instance on page wins creation.
     if (!document.querySelector('#' + modalId)) {
       let modalContainer = document.createElement('div');
       modalContainer.id = modalId;
@@ -19,11 +19,11 @@
     }
 
     editor.on('PreInit', function () {
-      let parent = document.querySelector('#' + editor.id).parentElement;// form-textarea-wrapper
       let trigger = document.createElement('div');
       trigger.id = triggerId;
       trigger.style.display = 'none';
-      parent.parentElement.parentElement.append(trigger);// @todo this might end up somewhere else when not node.
+      // Traverse up the dom to the Filter theme wrapper element.
+      editor.targetElm.closest('.text-format-wrapper').append(trigger);
 
       let dialogOptions = {
         height: Math.min(800, window.innerHeight) - 60,
