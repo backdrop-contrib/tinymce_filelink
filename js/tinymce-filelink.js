@@ -28,7 +28,7 @@
           link.href = absUrl.pathname + absUrl.search;
 
           const editor = tinymce.activeEditor;
-          // Get highlighted content if any.
+          // Get highlighted content from editor if any.
           let node = editor.selection.getNode();
           let text = editor.selection.getContent({ format: 'text' });
           let insertContent = '';

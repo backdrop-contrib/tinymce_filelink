@@ -1,6 +1,7 @@
 <?php
 /**
  * @file
+ * Hook implementations and callbacks for the TinyMCE File Link module.
  */
 
 /**
@@ -21,6 +22,9 @@ function tinymce_filelink_menu() {
 
 /**
  * Custom page callback to embed a view.
+ *
+ * @param object $format
+ *   The filter format definition.
  */
 function _tinymce_filelink_dialog($format) {
   // Some extra checks, as the path could be called directly.

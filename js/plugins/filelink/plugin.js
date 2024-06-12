@@ -1,6 +1,6 @@
 /**
  * @file
- * TinyMCE video filter plugin.
+ * TinyMCE File Link plugin.
  */
 (function () {
 
@@ -8,12 +8,13 @@
   tinymce.PluginManager.add('filelink', function (editor, url) {
     const triggerId = editor.id + '-filelink-trigger';
     // Do not reuse existing dialog container, as other dialogs can influence
-    // its dimensions. The first editor instance on page wins creation.
+    // its dimensions.
+    // The first editor instance on page wins creation.
     const modalId = 'tinymce-filelink-modal';
     if (!document.querySelector('#' + modalId)) {
       let modalContainer = document.createElement('div');
       modalContainer.id = modalId;
-      modalContainer.style.cssText = 'display:none;';
+      modalContainer.style.display = 'none';
       document.body.appendChild(modalContainer);
     }
 
@@ -21,7 +22,8 @@
       let parent = document.querySelector('#' + editor.id).parentElement;// form-textarea-wrapper
       let trigger = document.createElement('div');
       trigger.id = triggerId;
-      parent.parentElement.parentElement.append(trigger);
+      trigger.style.display = 'none';
+      parent.parentElement.parentElement.append(trigger);// @todo this might end up somewhere else when not node.
 
       let dialogOptions = {
         height: Math.min(800, window.innerHeight) - 60,
@@ -55,16 +57,6 @@
         element.click();
       }
     });
-/*
-    editor.ui.registry.addMenuItem('filelink', {
-      icon: 'link-file',
-      text: 'browse stuff',
-      onAction: function () {
-        let config = getDialogConfig();
-        editor.windowManager.open(config);
-      }
-    });
-*/
   });
 
 })();
