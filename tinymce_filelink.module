@@ -40,7 +40,6 @@ function _tinymce_filelink_dialog($format) {
   }
 
   $module_path = backdrop_get_path('module', 'tinymce_filelink');
-  // @todo cleanup and add the view json to config/
   $render = array(
     '#type' => 'markup',
     '#markup' => $view->preview('default'),
