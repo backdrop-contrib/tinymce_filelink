@@ -48,6 +48,7 @@
     editor.ui.registry.addButton('filelink', {
       icon: 'link-file',
       tooltip: editor.options.get('tinymceFilelinkTooltip'),
+      enabled: !!editor.options.get('tinymceFilelinkEnabled'),
       onAction: function () {
         let element = document.querySelector('#' + triggerId);
         // Open the jQuery.UI dialog.

@@ -12,7 +12,8 @@ function tinymce_filelink_menu() {
     'page callback' => '_tinymce_filelink_dialog',
     'theme callback' => 'ajax_base_page_theme',
     'page arguments' => array(3),
-    'access callback' => TRUE,/* @todo */
+    'access callback' => 'filter_access',
+    'access arguments' => array(3),
     'load callback' => 'filter_format_load',
   );
   return $items;
@@ -22,18 +23,23 @@ function tinymce_filelink_menu() {
  * Custom page callback to embed a view.
  */
 function _tinymce_filelink_dialog($format) {
+  // Some extra checks, as the path could be called directly.
+  $view = views_get_view('tinymce_file_browser');
+  if (empty($view)) {
+    backdrop_not_found();
+  }
+  if (!$view->access('default')) {
+    backdrop_access_denied();
+  }
   if ($format->editor != 'tinymce') {
     return;
   }
-  // hm, don't need it here inside the dialog, but actually outside in parent.
-  $profile = $format->editor_settings['tinymce_settings']['profile'];// and so on...
-  //debug($profile);
+
   $module_path = backdrop_get_path('module', 'tinymce_filelink');
-  // @todo cleanup and add the view to config/
-  $view = views_embed_view('tinymce_file_browser');
+  // @todo cleanup and add the view json to config/
   $render = array(
     '#type' => 'markup',
-    '#markup' => !empty($view) ? $view : 'oopsadaisy',//@todo not found or no access... how to differentiate?
+    '#markup' => $view->preview('default'),
     '#attached' => array(
       'js' => array($module_path . '/js/tinymce-filelink.js'),
       'css' => array($module_path . '/css/tinymce-filelink.css'),
@@ -62,8 +68,24 @@ function tinymce_filelink_tinymce_external_plugins($format) {
       'variables' => array(
         'tinymceFilelinkBrowseUrl' => url('editor/dialog/filelink/' . $format->format),
         'tinymceFilelinkTooltip' => t('Insert file link'),
+        'tinymceFilelinkEnabled' => _tinymce_filelink_set_active(),
       ),
     ),
   );
   return $plugins;
+}
+
+/**
+ * Check if the view exists and is accessible.
+ *
+ * @return string
+ *   Either an empty string or "true". Values get casted to boolean in
+ *   JavaScript.
+ */
+function _tinymce_filelink_set_active() {
+  $view = views_get_view('tinymce_file_browser');
+  if (empty($view) || !$view->access('default')) {
+    return '';
+  }
+  return 'true';
 }
