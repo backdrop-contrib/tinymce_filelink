@@ -24,15 +24,15 @@ function tinymce_filelink_menu() {
  */
 function _tinymce_filelink_dialog($format) {
   // Some extra checks, as the path could be called directly.
+  if ($format->editor != 'tinymce') {
+    backdrop_not_found();
+  }
   $view = views_get_view('tinymce_file_browser');
   if (empty($view)) {
     backdrop_not_found();
   }
   if (!$view->access('default')) {
     backdrop_access_denied();
-  }
-  if ($format->editor != 'tinymce') {
-    return;
   }
 
   $module_path = backdrop_get_path('module', 'tinymce_filelink');
