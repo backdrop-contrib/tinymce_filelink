@@ -16,7 +16,7 @@ Edit one of your TinyMCE editor profiles to add this plugin to the toolbar.
 
 ## Issues
 
-Bugs and feature requests should be reported in the [Issue Queue](https://github.com/backdrop-contrib/tinymce/issues)
+Bugs and feature requests should be reported in the [Issue Queue](https://github.com/backdrop-contrib/tinymce_filelink/issues)
 
 ## Current Maintainers
 
