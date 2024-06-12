@@ -28,7 +28,7 @@
         width: Math.min(800, window.innerWidth) - 40,
         target: '#' + modalId,
         classes: {
-          'ui-dialog': 'tinymce-filelink-dialog'
+          'ui-dialog': 'tinymce-filelink-dialog editor-dialog'
         },
         modal: true
       }

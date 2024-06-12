@@ -2,7 +2,7 @@
  * Styles attached to the dialog contents.
  */
 .tinymce-filelink-dialog {
-  z-index: 1300;/* Above editor toolbar */
+  z-index: 9996;/* Above maximized editor */
 }
 .tinymce-filelink-dialog .view {
   max-width: 100%;

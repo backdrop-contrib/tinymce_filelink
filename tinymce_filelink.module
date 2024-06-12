@@ -29,6 +29,7 @@ function _tinymce_filelink_dialog($format) {
   $profile = $format->editor_settings['tinymce_settings']['profile'];// and so on...
   //debug($profile);
   $module_path = backdrop_get_path('module', 'tinymce_filelink');
+  // @todo cleanup and add the view to config/
   $view = views_embed_view('tinymce_file_browser');
   $render = array(
     '#type' => 'markup',
