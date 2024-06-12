@@ -26,13 +26,12 @@
       editor.targetElm.closest('.text-format-wrapper').append(trigger);
 
       let dialogOptions = {
-        height: Math.min(800, window.innerHeight) - 60,
-        width: Math.min(800, window.innerWidth) - 40,
         target: '#' + modalId,
         classes: {
-          'ui-dialog': 'tinymce-filelink-dialog editor-dialog'
+          'ui-dialog': 'tinymce-filelink-dialog'
         },
-        modal: true
+        modal: true,
+        autoResize: true
       }
       let ajaxOptions = {
         accepts: 'application/vnd.backdrop-dialog',

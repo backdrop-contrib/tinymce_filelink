@@ -1,16 +1,26 @@
 /**
- * Styles attached to the dialog contents.
+ * @file
+ * Styles for TinyMCE File Link dialog and its contents.
  */
 .tinymce-filelink-dialog {
-  z-index: 9996;/* Above maximized editor */
+  z-index: 9996 !important;/* Above maximized editor */
+  max-width: 94% !important;
+  max-height: 94% !important;
+}
+@media (min-width: 960px) {
+  .tinymce-filelink-dialog {
+    max-width: 840px !important;
+  }
+}
+@media (max-width: 580px) {
+  .tinymce-filelink-dialog table .views-field-timestamp,
+  .tinymce-filelink-dialog table .views-field-filesize {
+    display: none;
+  }
 }
 .tinymce-filelink-dialog .view {
   max-width: 100%;
   overflow: auto;
-}
-.tinymce-filelink-dialog {
-  max-width: 94% !important;
-  max-height: 94% !important;
 }
 .tinymce-filelink-dialog th,
 .tinymce-filelink-dialog td {
