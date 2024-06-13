@@ -22,6 +22,10 @@
       let trigger = document.createElement('div');
       trigger.id = triggerId;
       trigger.style.display = 'none';
+      trigger.addEventListener('click', function () {
+        // @see Backdrop.behaviors.tinymceFilelinkInsert.
+        editor.setProgressState(true);
+      });
       // Traverse up the dom to the Filter theme wrapper element.
       editor.targetElm.closest('.text-format-wrapper').append(trigger);
 
@@ -38,8 +42,10 @@
         url: editor.options.get('tinymceFilelinkBrowseUrl'),
         event: 'click',
         dialog: dialogOptions,
+        /* We're using the tox throbber, which is prettier and plays nicer */
+        /* with editor fullscreen mode. */
         progress: {
-          type: 'none'/* @todo not sure yet... */
+          type: 'none'
         }
       };
       let element = document.querySelector('#' + triggerId);

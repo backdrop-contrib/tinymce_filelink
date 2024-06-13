@@ -9,6 +9,10 @@
 
   Backdrop.behaviors.tinymceFilelinkInsert = {
     attach: function (context) {
+      // The progress state has been set to true by clicking the trigger
+      // element. Loading is done now.
+      tinymce.activeEditor.setProgressState(false);
+
       $('.view-tinymce-file-browser').once('file-browser-actions', function() {
         // Prevent direct link click, as this might lead to losing content.
         $(this).find('[data-file-id]').on('click', function(event) {
