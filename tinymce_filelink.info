@@ -4,3 +4,5 @@ description = TinyMCE plugin to browse and link to previously uploaded files via
 backdrop = 1.x
 
 dependencies[] = tinymce
+
+stylesheets[all][] = css/tinymce-filelink.css

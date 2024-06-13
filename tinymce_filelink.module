@@ -45,7 +45,6 @@ function _tinymce_filelink_dialog($format) {
     '#markup' => $view->preview('default'),
     '#attached' => array(
       'js' => array($module_path . '/js/tinymce-filelink.js'),
-      'css' => array($module_path . '/css/tinymce-filelink.css'),
     ),
   );
   return $render;
