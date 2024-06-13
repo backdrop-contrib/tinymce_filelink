@@ -4,10 +4,12 @@ A TinyMCE plugin with a toolbar button that opens a dialog to conveniently
 insert a link to a file previously uploaded to the server.
 Like the link plugin does, but more convenient.
 
-![Screenshot of the open dialog](https://raw.githubusercontent.com/backdrop-contrib/tinymce_filelink/1.x-1.x/screenshots/tinymce-filelink-dialog.webp)
+![Toolbar icon](https://raw.githubusercontent.com/backdrop-contrib/tinymce_filelink/1.x-1.x/js/plugins/filelink/icons/link-file.svg)
 
 The listing has filters, provides more info about the file, and allows to
 preview the file.
+
+![Screenshot of the open dialog](https://raw.githubusercontent.com/backdrop-contrib/tinymce_filelink/1.x-1.x/screenshots/tinymce-filelink-dialog.webp)
 
 Useful, if you have lots of files (like documents) and need to link to them
 in content regularly.
