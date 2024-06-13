@@ -71,7 +71,7 @@ function tinymce_filelink_tinymce_external_plugins($format) {
       'variables' => array(
         'tinymceFilelinkBrowseUrl' => url('editor/dialog/filelink/' . $format->format),
         'tinymceFilelinkTooltip' => t('Insert file link'),
-        'tinymceFilelinkEnabled' => _tinymce_filelink_set_active(),
+        'tinymceFilelinkEnabled' => _tinymce_filelink_set_enabled(),
       ),
     ),
   );
@@ -85,7 +85,7 @@ function tinymce_filelink_tinymce_external_plugins($format) {
  *   Either an empty string or "true". Values get casted to boolean in
  *   JavaScript.
  */
-function _tinymce_filelink_set_active() {
+function _tinymce_filelink_set_enabled() {
   $view = views_get_view('tinymce_file_browser');
   if (empty($view) || !$view->access('default')) {
     return '';
