@@ -42,8 +42,8 @@
         url: editor.options.get('tinymceFilelinkBrowseUrl'),
         event: 'click',
         dialog: dialogOptions,
-        /* We're using the tox throbber, which is prettier and plays nicer */
-        /* with editor fullscreen mode. */
+        // We're using the tox throbber, which is prettier and plays nicer
+        // with editor fullscreen mode.
         progress: {
           type: 'none'
         }
