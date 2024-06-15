@@ -9,6 +9,9 @@
 
   Backdrop.behaviors.tinymceFilelinkInsert = {
     attach: function (context) {
+      if (typeof tinymce == 'undefined' || !tinymce.activeEditor) {
+        return;
+      }
       // The progress state has been set to true by clicking the trigger
       // element. Loading is done now.
       tinymce.activeEditor.setProgressState(false);
