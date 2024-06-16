@@ -57,6 +57,8 @@
       tooltip: editor.options.get('tinymceFilelinkTooltip'),
       enabled: !!editor.options.get('tinymceFilelinkEnabled'),
       onAction: function () {
+        // Make sure, our editor is the active one.
+        editor.focus();
         let element = document.querySelector('#' + triggerId);
         // Open the jQuery.UI dialog.
         element.click();
