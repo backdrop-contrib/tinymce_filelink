@@ -42,24 +42,17 @@
           // Get highlighted content from editor if any.
           let node = editor.selection.getNode();
           let text = editor.selection.getContent({ format: 'text' });
-          let insertContent = '';
           // Link wrapped around image.
           if (node.nodeName === 'IMG') {
             link.replaceChildren(node);
-            insertContent = link.outerHTML;
           }
           // Regular text.
           else if (text.length) {
             let newtext = document.createTextNode(text);
             link.replaceChildren(newtext);
-            insertContent = link.outerHTML;
-          }
-          // Insert file link as-is.
-          else {
-            insertContent = link.outerHTML;
           }
 
-          editor.execCommand('mceInsertContent', false, insertContent);
+          editor.execCommand('mceInsertContent', false, link.outerHTML);
           // Close the jQuery.UI dialog, then put focus back on editor.
           $('#tinymce-filelink-modal').dialog('close');
           editor.focus();
