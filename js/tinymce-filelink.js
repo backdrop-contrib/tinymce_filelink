@@ -9,12 +9,13 @@
 
   Backdrop.behaviors.tinymceFilelinkInsert = {
     attach: function (context) {
-      if (typeof tinymce == 'undefined' || !tinymce.activeEditor) {
+      if (typeof tinymce === 'undefined' || !tinymce.activeEditor) {
         return;
       }
+      const editor = tinymce.activeEditor;
       // The progress state has been set to true by clicking the trigger
       // element. Loading is done now.
-      tinymce.activeEditor.setProgressState(false);
+      editor.setProgressState(false);
 
       $('.view-tinymce-file-browser').once('file-browser-actions', function() {
         // Prevent direct link click, as this might lead to losing content.
@@ -22,7 +23,7 @@
           event.preventDefault();
 
           let message = Backdrop.t('Open "@file" in a new browser tab?', {'@file': event.target.text});
-          tinymce.activeEditor.windowManager.confirm(message, function(state) {
+          editor.windowManager.confirm(message, function(state) {
             if (state) {
               window.open(event.target.href, '_blank');
             }
@@ -38,7 +39,6 @@
           let absUrl = new URL(link.href);
           link.href = absUrl.pathname + absUrl.search;
 
-          const editor = tinymce.activeEditor;
           // Get highlighted content from editor if any.
           let node = editor.selection.getNode();
           let text = editor.selection.getContent({ format: 'text' });
@@ -54,9 +54,9 @@
             link.replaceChildren(newtext);
             insertContent = link.outerHTML;
           }
-          // Insert file link as-is, attach a space for easier typing after.
+          // Insert file link as-is.
           else {
-            insertContent = link.outerHTML + ' ';
+            insertContent = link.outerHTML;
           }
 
           editor.execCommand('mceInsertContent', false, insertContent);
