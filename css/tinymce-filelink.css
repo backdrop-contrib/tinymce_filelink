@@ -7,6 +7,9 @@
   max-width: 94% !important;
   max-height: 94% !important;
 }
+html.dialog-open .tox.tox-silver-sink {
+  z-index: 9997;/* Push confirm dialog above Backdrop dialog. */
+}
 @media (min-width: 960px) {
   .tinymce-filelink-dialog {
     max-width: 840px !important;

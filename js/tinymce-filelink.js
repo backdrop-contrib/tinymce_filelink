@@ -20,9 +20,13 @@
         // Prevent direct link click, as this might lead to losing content.
         $(this).find('[data-file-id]').on('click', function(event) {
           event.preventDefault();
-          if (window.confirm(Backdrop.t('Open file in new tab?'))) {
-            window.open(event.target.href, '_blank');
-          }
+
+          let message = Backdrop.t('Open "@file" in a new browser tab?', {'@file': event.target.text});
+          tinymce.activeEditor.windowManager.confirm(message, function(state) {
+            if (state) {
+              window.open(event.target.href, '_blank');
+            }
+          });
         });
         // Add event handler to action buttons.
         $(this).find('[data-fid]').on('click', function(event) {
