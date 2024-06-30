@@ -62,6 +62,7 @@ function tinymce_filelink_tinymce_external_plugins($format) {
         'filelink' => array(
           'icon' => 'link-file',
           'tooltip' => t('Insert file link'),
+          'required_tags' => array('a'),
         ),
       ),
       'icons' => array(
