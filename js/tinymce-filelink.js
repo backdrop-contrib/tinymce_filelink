@@ -40,16 +40,9 @@
           link.href = absUrl.pathname + absUrl.search;
 
           // Get highlighted content from editor if any.
-          let node = editor.selection.getNode();
-          let text = editor.selection.getContent({ format: 'text' });
-          // Link wrapped around image.
-          if (node.nodeName === 'IMG') {
-            link.replaceChildren(node);
-          }
-          // Regular text.
-          else if (text.length) {
-            let newtext = document.createTextNode(text);
-            link.replaceChildren(newtext);
+          let selection = editor.selection.getContent();
+          if (selection) {
+            link.innerHTML = selection;
           }
 
           editor.execCommand('mceInsertContent', false, link.outerHTML);
