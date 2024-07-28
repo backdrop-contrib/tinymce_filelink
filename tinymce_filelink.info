@@ -2,6 +2,7 @@ type = module
 name = TinyMCE File Link
 description = TinyMCE plugin to browse and link to previously uploaded files via dialog.
 backdrop = 1.x
+maintainers[indigoxela] = indigoxela
 
 dependencies[] = tinymce
 
